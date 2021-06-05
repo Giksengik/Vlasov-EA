@@ -17,7 +17,7 @@ public class NetworkHelper {
     public static final String LATEST_CATEGORY = "latest";
     public static final String HOT_CATEGORY = "hot";
     public static final String TOP_CATEGORY = "top";
-    public static final int PAGE_SIZE = 10;
+    public static final int PAGE_SIZE = 50;
 
     private JSONPlaceholderAPI jsonPlaceholderAPI;
 
