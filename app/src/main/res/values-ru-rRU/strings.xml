@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Developers Life</string>
+    <string name="tab_relevant">Последние</string>
+    <string name="tab_best">Лучшие</string>
+    <string name="tab_hot">Горячие</string>
+    <string name="show_next_gif">Показать следующее</string>
+    <string name="show_previous_gif">Показать предыдущее</string>
+    <string name="retry">Повторить</string>
+    <string name="error_message">Произошла ошибка при загрузке данных.Проверьте подключение к сети.</string>
+</resources>

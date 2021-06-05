@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Developers Life</string>
+    <string name="tab_relevant">Relevant</string>
+    <string name="tab_best">Best</string>
+    <string name="tab_hot">Hot</string>
+    <string name="show_next_gif">Show next gif</string>
+    <string name="show_previous_gif">Show previous gif</string>
+    <string name="retry">Retry</string>
+    <string name="error_message">An error occurred while loading data. Check your network connection.</string>
+
+</resources>
