@@ -24,11 +24,44 @@
         android:layout_marginBottom="15dp"
         android:background="@null"
         android:backgroundTint="@color/white"
+        app:cardCornerRadius="10dp"
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toTopOf="@+id/previousButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/endOfContentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                android:src="@drawable/ic_end_of_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="8dp"
+                android:text="The content is over, please wait for updates."
+                android:textColor="#494949"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <FrameLayout
             android:id="@+id/gifInfoLayout"
@@ -42,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:translationZ="2dp"
+                android:translationZ="0dp"
                 android:visibility="visible" />
 
             <TextView
@@ -67,7 +100,6 @@
                 android:layout_gravity="center"
                 android:background="@null"
                 android:backgroundTint="@null"
-                android:scaleType="centerCrop"
                 android:translationZ="1dp"
                 android:visibility="visible"
                 app:layout_constrainedHeight="true"

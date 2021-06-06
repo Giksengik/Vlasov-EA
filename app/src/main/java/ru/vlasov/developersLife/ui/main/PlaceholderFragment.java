@@ -14,11 +14,15 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
+
+import java.util.concurrent.ExecutionException;
 
 import ru.vlasov.developersLife.R;
 import ru.vlasov.developersLife.api.NetworkHelper;
@@ -115,39 +119,44 @@ public class PlaceholderFragment extends Fragment {
     }
 
     private void setGifInfo(MemePost memePost) {
-        Glide.with(getContext())
-                .asGif()
-                .load(memePost.getGifURL())
-                .listener(new RequestListener<GifDrawable>() {
-                    @Override
-                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<GifDrawable> target, boolean isFirstResource) {
-                        if(NetworkHelper.hasConnection(getContext())){
-                            return true;
-                        }else {
-                            hasImageDownloadingError = true;
-                            showConnectionErrorLayout();
+        if (memePost.getGifURL() != null) {
+            Glide.with(getContext())
+                    .asGif()
+                    .load(memePost.getGifURL())
+                    .listener(new RequestListener<GifDrawable>() {
+                        @Override
+                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<GifDrawable> target, boolean isFirstResource) {
+                            if(NetworkHelper.hasConnection(getContext())){
+                                return true;
+                            }else {
+                                hasImageDownloadingError = true;
+                                showConnectionErrorLayout();
+                                return false;
+                            }
+                        }
+
+                        @Override
+                        public boolean onResourceReady(GifDrawable resource, Object model, Target<GifDrawable> target, DataSource dataSource, boolean isFirstResource) {
+                            binding.progressBar.setVisibility(View.GONE);
+                            hasImageDownloadingError = false;
                             return false;
                         }
-                    }
-
-                    @Override
-                    public boolean onResourceReady(GifDrawable resource, Object model, Target<GifDrawable> target, DataSource dataSource, boolean isFirstResource) {
-                        binding.progressBar.setVisibility(View.GONE);
-                        hasImageDownloadingError = false;
-                        return false;
-                    }
-                })
-                .timeout(30000)
-                .into(binding.gifPlaceholder);
-        binding.gifDescription.setText(memePost.getDescription());
-        if(binding.imageView.getDrawable() != null)
-            binding.progressBar.setVisibility(View.GONE);
+                    })
+                    .centerCrop()
+                    .timeout(30000)
+                    .into(binding.gifPlaceholder);
+            binding.gifDescription.setText(memePost.getDescription());
+        }
+        else {
+            showEndOfContentNotification();
+        }
     }
     public void showConnectionErrorLayout() {
         binding.gifInfoLayout.setVisibility(View.GONE);
         binding.errorLayout.setVisibility(View.VISIBLE);
         binding.previousButton.setVisibility(View.GONE);
         binding.nextButton.setVisibility(View.GONE);
+        binding.endOfContentLayout.setVisibility(View.GONE);
     }
 
     public void showGifInfoLayout() {
@@ -156,5 +165,13 @@ public class PlaceholderFragment extends Fragment {
         binding.errorLayout.setVisibility(View.GONE);
         binding.previousButton.setVisibility(View.VISIBLE);
         binding.nextButton.setVisibility(View.VISIBLE);
+        binding.endOfContentLayout.setVisibility(View.GONE);
+    }
+    public void showEndOfContentNotification() {
+        binding.gifInfoLayout.setVisibility(View.GONE);
+        binding.errorLayout.setVisibility(View.GONE);
+        binding.previousButton.setVisibility(View.VISIBLE);
+        binding.nextButton.setVisibility(View.VISIBLE);
+        binding.endOfContentLayout.setVisibility(View.VISIBLE);
     }
 }

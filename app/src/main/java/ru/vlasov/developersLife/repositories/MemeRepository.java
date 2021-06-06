@@ -91,6 +91,9 @@ public class MemeRepository {
                                     currentLastMemesContent.setValue(response.body().getPosts().get(0));
                                     if (lastCounter != 0) lastCounter++;
                                 }
+                                else{
+                                    currentLastMemesContent.setValue(new MemePost());
+                                }
                             }
                         }
 
@@ -116,6 +119,9 @@ public class MemeRepository {
                                 bestMemesPosts.addAll(response.body().getPosts());
                                 currentBestMemesContent.setValue(response.body().getPosts().get(0));
                                 if (bestCounter != 0) bestCounter++;
+                            }
+                            else{
+                                currentBestMemesContent.setValue(new MemePost());
                             }
 
                         }
@@ -143,6 +149,9 @@ public class MemeRepository {
                                 hotMemesPosts.addAll(response.body().getPosts());
                                 currentHotMemesContent.setValue(response.body().getPosts().get(0));
                                 if (hotCounter != 0) hotCounter++;
+                            }
+                            else{
+                                currentHotMemesContent.setValue(new MemePost());
                             }
 
                         }
