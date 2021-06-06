@@ -140,6 +140,8 @@ public class PlaceholderFragment extends Fragment {
                 .timeout(30000)
                 .into(binding.gifPlaceholder);
         binding.gifDescription.setText(memePost.getDescription());
+        if(binding.imageView.getDrawable() != null)
+            binding.progressBar.setVisibility(View.GONE);
     }
     public void showConnectionErrorLayout() {
         binding.gifInfoLayout.setVisibility(View.GONE);

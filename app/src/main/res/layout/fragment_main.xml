@@ -67,7 +67,7 @@
                 android:layout_gravity="center"
                 android:background="@null"
                 android:backgroundTint="@null"
-                android:scaleType="fitCenter"
+                android:scaleType="centerCrop"
                 android:translationZ="1dp"
                 android:visibility="visible"
                 app:layout_constrainedHeight="true"
