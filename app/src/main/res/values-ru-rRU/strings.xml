@@ -8,4 +8,5 @@
     <string name="show_previous_gif">Показать предыдущее</string>
     <string name="retry">Повторить</string>
     <string name="error_message">Произошла ошибка при загрузке данных.Проверьте подключение к сети.</string>
+    <string name="end_of_content_message">Мемы закончились.Пожалуйста ожидайте обновлений.</string>
 </resources>
